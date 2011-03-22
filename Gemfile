@@ -8,5 +8,6 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'launchy'
   gem 'nifty-generators', :git => 'git://github.com/ryanb/nifty-generators.git'
 end
