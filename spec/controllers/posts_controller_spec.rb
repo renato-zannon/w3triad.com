@@ -48,4 +48,49 @@ describe PostsController do
       assigns[:post].should be new_post
     end
   end
+
+  describe "POST create" do
+    let(:new_post) { mock_model(Post).as_null_object }
+
+    before do
+      Post.stub(:new).and_return new_post
+    end
+
+    it "tries to save the post" do
+      new_post.should_receive(:save)
+      post :create
+    end
+
+    context "when the post fails to save" do
+      before do
+        new_post.stub(:save).and_return false
+      end
+
+      it "sets a flash error message" do
+        post :create
+        flash[:error].should =~ /error.*post/i
+      end
+
+      it "renders the 'new post' form" do
+        post :create
+        response.should render_template :new
+      end
+    end
+
+    context "when the post is saved successfuly" do
+      before do
+        new_post.stub(:save).and_return true
+      end
+
+      it "sets a flash notice message" do
+        post :create
+        flash[:notice].should =~ /success/i
+      end
+
+      it "redirects to the post's page" do
+        post :create
+        response.should redirect_to new_post
+      end
+    end
+  end
 end

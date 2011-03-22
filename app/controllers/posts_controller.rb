@@ -11,4 +11,15 @@ class PostsController < ApplicationController
   def new
     @post = Post.new(params[:post])
   end
+
+  def create
+    @post = Post.new(params[:post])
+    if @post.save
+      flash[:notice] = "The post was created successfully!"
+      redirect_to @post
+    else
+      flash[:error] = "There was an error while trying to save the post!"
+      render :new
+    end
+  end
 end
