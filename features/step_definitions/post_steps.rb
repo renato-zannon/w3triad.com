@@ -9,7 +9,8 @@ When /^I create a new post$/ do
 end
 
 Then /^I should be able to see it on the post's index$/ do
-  pending # express the regexp above with the code you wish you had
+  visit posts_path
+  page.body.should include "Stub post :)"
 end
 
 Then /^I should be able to view it's complete page$/ do
