@@ -1,10 +1,8 @@
 class PostsController < ApplicationController
   def index
-    posts = Post.all
-    if posts.nil? || posts.empty?
+    @posts = Post.all
+    if @posts.nil? || @posts.empty?
       flash[:error] = "No posts where found!"
-    else
-      @posts = posts
     end
   end
 
@@ -20,6 +18,13 @@ class PostsController < ApplicationController
     else
       flash[:error] = "There was an error while trying to save the post!"
       render :new
+    end
+  end
+
+  def show
+    unless @post = Post.find(params[:id])
+      flash[:error] = "The requested post wasn't found!"
+      redirect_to posts_path
     end
   end
 end

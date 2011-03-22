@@ -93,4 +93,40 @@ describe PostsController do
       end
     end
   end
+
+  describe "GET show" do
+    it "searches for a post with the provided id" do
+      Post.should_receive(:find).with 1
+      get :show, :id => 1
+    end
+
+    context "when it doesn't find the post" do
+      before do
+        Post.stub(:find).and_return nil
+      end
+
+      it "sets a flash error message" do
+        get :show, :id => 1
+        flash[:error].should =~ /post.*found/i
+      end
+
+      it "redirects to the posts index page" do
+        get :show, :id => 1
+        response.should redirect_to posts_path
+      end
+    end
+
+    context "when it finds the post" do
+      let(:found_post) { mock_model(Post) }
+
+      before do
+        Post.stub(:find).and_return found_post
+      end
+
+      it "sets an instance variable containing the post" do
+        get :show, :id => 1
+        assigns[:post].should be found_post
+      end
+    end
+  end
 end
