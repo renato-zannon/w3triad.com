@@ -1,4 +1,4 @@
 <h1><%= @post.title %></h1>
-<% @post.content.split('\n').each do |paragraph| %>
-  <p><%= paragraph %></p>
+<% @post.paragraphs.each do |paragraph| %>
+  <p><%= paragraph.gsub("\n",'<br>').html_safe %></p>
 <% end %>
