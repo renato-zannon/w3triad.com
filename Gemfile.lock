@@ -7,6 +7,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.5)
       actionpack (= 3.0.5)
@@ -35,6 +36,10 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.9)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    autotest-notification (2.3.1)
+      autotest (~> 4.3)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -137,6 +142,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autotest
+  autotest-notification
   capybara
   cucumber-rails
   database_cleaner
