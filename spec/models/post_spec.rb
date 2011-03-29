@@ -21,10 +21,4 @@ describe Post do
     end
   end
 
-  describe "#paragraphs" do
-    it "returns an array containing the paragraphs on the content (stripped)" do
-      subject.content = "Paragraph 1\n\n   Paragraph 2\n\n\nParagraph 3\nLine 1  "
-      subject.paragraphs.should == ["Paragraph 1", "Paragraph 2", "Paragraph 3\nLine 1"]
-    end
-  end
 end
