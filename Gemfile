@@ -13,4 +13,5 @@ group :development, :test do
   gem 'nifty-generators', :git => 'git://github.com/ryanb/nifty-generators.git'
   gem 'autotest-notification'
   gem 'autotest'
+  gem 'simplecov'
 end
