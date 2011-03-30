@@ -12,6 +12,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.content = CGI.escapeHTML(@post.content)
+    @post.title   = CGI.escapeHTML(@post.title)
     if @post.save
       flash[:notice] = "The post was created successfully!"
       redirect_to @post
