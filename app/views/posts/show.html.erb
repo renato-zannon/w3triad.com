@@ -1,4 +1,4 @@
 <h1><%= @post.title %></h1>
-<% @post.paragraphs.each do |paragraph| %>
-  <p><%= paragraph.gsub("\n",'<br>').html_safe %></p>
+<% @post.formatted_paragraphs.each do |paragraph| %>
+  <%= paragraph.html_safe %>
 <% end %>

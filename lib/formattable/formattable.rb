@@ -1,12 +1,11 @@
+require 'formattable'
 module Formattable
-
-  def tags
-    @tags ||= TagCollection.new
-  end
-
   def self.included(klass)
-    unless klass.new.respond_to?(:content)
-      raise "#{klass.name} doesn't have a content method!"
+    required_methods = [:content, :tags, :paragraph_begin, :paragraph_end]
+    required_methods.each do |method|
+      unless klass.new.respond_to? method
+        raise "#{klass.name} doesn't have a #{method} method!"
+      end
     end
   end
 
@@ -15,7 +14,9 @@ module Formattable
   end
 
   def formatted_paragraphs
-    format(paragraphs)
+    paragraphs.map do |paragraph|
+      paragraph_begin + format(paragraph) + paragraph_end
+    end
   end
 
   def paragraphs
@@ -25,7 +26,6 @@ module Formattable
   end
 
   private
-
   def format(string)
     tags.inject(string) do |text, tag|
       key = tag[0]

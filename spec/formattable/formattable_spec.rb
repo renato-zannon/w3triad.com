@@ -2,11 +2,12 @@ require 'spec_helper'
 
 class TestClass
   attr_accessor :content
+  act_as_formattable
 end
 
 describe Formattable do
 
-  subject { TestClass.new.extend(Formattable) }
+  subject { TestClass.new }
 
   it "has a default set of tags" do
     should respond_to(:tags)

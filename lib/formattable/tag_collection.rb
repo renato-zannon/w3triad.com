@@ -1,9 +1,17 @@
+require 'formattable'
 module Formattable
   class TagCollection
     include Enumerable
 
     def [](key)
       tags[key]
+    end
+
+    def initialize(tags_hash=nil)
+      unless tags_hash.nil?
+        tags_hash.each {|key, value| raise ArgumentError unless TagCollection.valid_tag?(key, value) }
+        @tags = tags_hash
+      end
     end
 
     def []=(key, value)
