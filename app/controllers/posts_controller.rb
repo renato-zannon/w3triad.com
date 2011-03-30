@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     if @posts.nil? || @posts.empty?
-      flash[:error] = "No posts where found!"
+      flash[:notice] = "No posts were found!"
     end
   end
 
