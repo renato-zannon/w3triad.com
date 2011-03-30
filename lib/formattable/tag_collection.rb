@@ -4,7 +4,11 @@ module Formattable
     include Enumerable
 
     def [](key)
-      tags[key]
+      if TagCollection.complex_key?(key)
+        tags['()'].call (key.gsub(/\A\(([\w\s]*)\)\z/, '\1'))
+      else
+        tags[key]
+      end
     end
 
     def initialize(tags_hash=nil)
@@ -41,10 +45,17 @@ module Formattable
     private
 
     def TagCollection.valid_tag?(key, value)
-      @key_regex ||= %r{\A([[:alpha:]]|\(\w+\))\z}
+      @key_regex ||= %r{\A([[:alpha:]]|\(\))\z}
       return false unless key.kind_of? String and key.match(@key_regex)
-      return false unless value.kind_of? Array and value.count == 2
-      true
+      if (value.kind_of? Array and value.count == 2)
+        return true
+      elsif value.kind_of? Proc and value.parameters.count==1
+        return true
+      end
+    end
+
+    def TagCollection.complex_key?(key)
+      return true if key.match(/\([\w\s]*\)/)
     end
   end
 end

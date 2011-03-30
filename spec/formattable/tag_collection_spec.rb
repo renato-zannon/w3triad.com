@@ -5,6 +5,17 @@ module Formattable
 
     subject { TagCollection.new }
 
+    describe "accepts tags mapping to" do
+      specify "an array with two members, when the key is simple" do
+        subject["c"] = ["<cool>", "</cool>"]
+        subject.should include "c"
+      end
+
+      specify "a block, for the parenthesis key" do
+        subject["()"] = Proc.new { |tag| ["<#{tag}>","</#{tag}>"] }
+        subject["(cool)"].should == ["<cool>", "</cool>"]
+      end
+    end
     describe "lets me change the tags" do
       specify "by merging another hash" do
         new_tag = {"c" => ["<cool>", "</cool>"]}
@@ -22,7 +33,7 @@ module Formattable
 
     describe "complains if I try to include" do
       specify "a tag with invalid characters" do
-        bad_tags = ["$t", "t a g", "(t", "t)", ")t", "t(", "t "]
+        bad_tags = ["$t", "t a g", "(t", "t)", ")t", "t(", "t ", "(())", "(()"]
         bad_tags.each do |bad_tag|
           including_bad_tag = lambda { subject[bad_tag] = ["<bad tag>", "</bad tag>"]}
           including_bad_tag.should raise_error ArgumentError
@@ -43,6 +54,14 @@ module Formattable
           nil_tag = {bad_key => bad_value}
           setting_nil_tag = lambda { subject.merge nil_tag }
           setting_nil_tag.should raise_error ArgumentError
+        end
+      end
+
+      specify "a Proc that accepts more (or less) than 1 parameter" do
+        bad_procs = [ Proc.new {}, Proc.new { |a,b| }, Proc.new { |a,b,c| } ]
+        bad_procs.each do |bad_proc|
+          mapping_bad_proc = lambda { subject['()'] = bad_proc }
+          mapping_bad_proc.should raise_error ArgumentError
         end
       end
     end
