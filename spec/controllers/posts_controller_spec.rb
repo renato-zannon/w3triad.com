@@ -29,7 +29,7 @@ describe PostsController do
 
       it "sets an flash error message" do
         get :index
-        flash[:error].should =~ /no posts/i
+        flash[:notice].should =~ /no posts/i
       end
     end
 
