@@ -19,8 +19,9 @@ Feature: Post on blog
         Then I should be able to see "<formatted_text>"
 
         Examples: Default styles
-            | title  |  raw_text  |        formatted_text               |
-            | Test 1 |  $itext$i  | <span class='italic'>text</span>    |
-            | Test 2 |  $btext$b  | <span class='bold'>text</span>      |
-            | Test 3 |  $utext$u  | <span class='underline'>text</span> |
-            | Test 4 |  $otext$o  | <span class='overline'>text</span>  |
+            | title  |  raw_text  |           formatted_text               |
+            | Test 1 |  $itext$i  | <span class='italic'>text</span>       |
+            | Test 2 |  $btext$b  | <span class='bold'>text</span>         |
+            | Test 3 |  $utext$u  | <span class='underline'>text</span>    |
+            | Test 4 |  $otext$o  | <span class='overline'>text</span>     |
+            | Test 5 |  $ttext$t  | <span class='line-through'>text</span> |
