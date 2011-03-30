@@ -17,3 +17,7 @@ Then /^I should be able to see the post's complete page$/ do
   page.body.should include "Stub post :)"
   page.body.should include "Stub content!"
 end
+
+Then /^I should be able to see "([^"]*)"$/ do |content|
+  page.body.should include content
+end

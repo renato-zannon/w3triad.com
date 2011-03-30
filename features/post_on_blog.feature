@@ -14,12 +14,13 @@ Feature: Post on blog
     Scenario Outline: Blog post formatting
         Given I am on the new post page
         When I fill in "Content" with "<raw_text>"
+        And I fill in "Title" with "<title>"
         And I press "submit"
-        Then I should see "<formatted_text>"
+        Then I should be able to see "<formatted_text>"
 
         Examples: Default styles
-            |  raw_text  |        formatted_text               |
-            |  $itext$i  | <span class='italic'>text</span>    |
-            |  $btext$b  | <span class='bold'>text</span>      |
-            |  $utext$u  | <span class='underline'>text</span> |
-            |  $otext$o  | <span class='overline'>text</span>  |
+            | title  |  raw_text  |        formatted_text               |
+            | Test 1 |  $itext$i  | <span class='italic'>text</span>    |
+            | Test 2 |  $btext$b  | <span class='bold'>text</span>      |
+            | Test 3 |  $utext$u  | <span class='underline'>text</span> |
+            | Test 4 |  $otext$o  | <span class='overline'>text</span>  |
