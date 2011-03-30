@@ -1,0 +1,29 @@
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.overline {
+  text-decoration: overline;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.post_title {
+  color: gray;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.post_title:hover {
+  text-decoration: underline;
+}
