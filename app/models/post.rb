@@ -7,5 +7,6 @@ class Post < ActiveRecord::Base
                        'o' => ["<span class='overline'>",  "</span>"],
                        't' => ["<span class='line-through'>",  "</span>"],
                        :paragraph_begin => '<p>',
-                       :paragraph_end   => '</p>'
+                       :paragraph_end   => '</p>',
+                       :line_break      => '<br />'
 end

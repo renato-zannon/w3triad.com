@@ -1,7 +1,7 @@
 require 'formattable'
 module Formattable
   def self.included(klass)
-    required_methods = [:content, :tags, :paragraph_begin, :paragraph_end]
+    required_methods = [:content, :tags, :paragraph_begin, :paragraph_end,  :line_break]
     required_methods.each do |method|
       unless klass.new.respond_to? method
         raise "#{klass.name} doesn't have a #{method} method!"
@@ -15,7 +15,7 @@ module Formattable
 
   def formatted_paragraphs
     paragraphs.map do |paragraph|
-      paragraph_begin + format(paragraph) + paragraph_end
+      paragraph_begin + format(paragraph).gsub(/\n/,line_break) + paragraph_end
     end
   end
 
