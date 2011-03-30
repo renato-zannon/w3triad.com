@@ -27,12 +27,28 @@ module Formattable
 
   private
   def format(string)
-    tags.inject(string) do |text, tag|
+    simple_tags = tags.reject { |tag, _| tag=='()' }
+    string = simple_format(string, simple_tags)
+    complex_format(string)
+  end
+
+  def simple_format(string, simple_tags)
+    simple_tags.inject(string) do |text, tag|
       key = tag[0]
       open_tag = tag[1][0]
       close_tag = tag[1][1]
       text.gsub!(/(^|[^\\])(\$#{key})(.*?)\2/, "\\1#{open_tag}\\3#{close_tag}")
       text.gsub(/(^|[^\\])\$#{key}/, "\\1#{open_tag}")
     end.gsub(/\\\$/,"$")
+  end
+
+  def complex_format(string)
+    result = string.dup
+    string.scan(/(^|[^\\])\$(\([\w\s]+\))(.*?)\$\2/) do |starter, key, text|
+      open_tag = tags[key][0]
+      close_tag = tags[key][1]
+      result.gsub!(starter+'$'+key+text+'$'+key, starter+open_tag+text+close_tag)
+    end
+    result
   end
 end
