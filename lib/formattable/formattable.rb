@@ -15,7 +15,7 @@ module Formattable
 
   def formatted_paragraphs
     paragraphs.map do |paragraph|
-      paragraph_begin + format(paragraph).gsub(/\n/,line_break) + paragraph_end
+      paragraph_begin + format(paragraph).gsub(/\n/,line_break+"\n") + paragraph_end
     end
   end
 
