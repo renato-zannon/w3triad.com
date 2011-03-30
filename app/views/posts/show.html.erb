@@ -2,3 +2,4 @@
 <% @post.formatted_paragraphs.each do |paragraph| %>
   <%= paragraph.html_safe %>
 <% end %>
+  <%= render :partial => 'disqus' %>
