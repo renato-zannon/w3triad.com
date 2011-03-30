@@ -8,5 +8,6 @@ class Post < ActiveRecord::Base
                        't' => ["<span class='line-through'>",  "</span>"],
                        :paragraph_begin => '<p>',
                        :paragraph_end   => '</p>',
-                       :line_break      => '<br />'
+                       :line_break      => '<br />',
+                       '()'             => lambda { |style| ["<span class='#{style}'>", "</span>"] }
 end
