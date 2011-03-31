@@ -55,6 +55,10 @@ describe Formattable do
       subject.content = '\$t$ttext$t'
       subject.tags['t'] = ["<tag>", "</tag>"]
       subject.formatted_content.should == "$t<tag>text</tag>"
+
+      subject.content = '$(tag)\$(tag)text\$(tag)$(tag)'
+      subject.tags['()'] = lambda { |tag| ["<#{tag}>", "</#{tag}>"] }
+      subject.formatted_content.should == "<tag>$(tag)text$(tag)</tag>"
     end
   end
 
