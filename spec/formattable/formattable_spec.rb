@@ -21,44 +21,44 @@ describe Formattable do
     end
 
     it "formats simple tags" do
-      subject.content = "$tcontent$t"
+      subject.content = "#tcontent#t"
       subject.tags['t'] = ['<tag>', '</tag>']
       subject.formatted_content.should == "<tag>content</tag>"
     end
 
     it "formats complex tags" do
-      subject.content = "$(style)test$(style)"
+      subject.content = "#(style)test#(style)"
       subject.tags['()'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
       subject.formatted_content.should == "<style>test</style>"
     end
 
     it "a tag doesn't interfere on another" do
-      subject.content = "$btext1$b $itext2$i $b$itext3$i$b"
+      subject.content = "#btext1#b #itext2#i #b#itext3#i#b"
       subject.tags['b'] = ["<bold>", "</bold>"]
       subject.tags['i'] = ["<italic>", "</italic>"]
       subject.formatted_content.should == "<bold>text1</bold> <italic>text2</italic> <bold><italic>text3</italic></bold>"
     end
 
     it "formats complex tags and simple tags altogether" do
-      subject.content = "$(style)$ttext$t$(style) $t$(style)text$(style)$t"
+      subject.content = "#(style)#ttext#t#(style) #t#(style)text#(style)#t"
       subject.tags['()'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
       subject.tags['t'] = ['<test>', '</test>']
       subject.formatted_content.should == "<style><test>text</test></style> <test><style>text</style></test>"
     end
     it "leaves the tag unopened if doesn't encounter a pair of keys" do
-      subject.content = "$ttext"
+      subject.content = "#ttext"
       subject.tags['t'] = ["<tag>", "</tag>"]
       subject.formatted_content.should == "<tag>text"
     end
 
-    it "substitutes \$ with $, and don't resolve as a tag" do
-      subject.content = '\$t$ttext$t'
+    it "substitutes \# with #, and don't resolve as a tag" do
+      subject.content = '\#t#ttext#t'
       subject.tags['t'] = ["<tag>", "</tag>"]
-      subject.formatted_content.should == "$t<tag>text</tag>"
+      subject.formatted_content.should == "#t<tag>text</tag>"
 
-      subject.content = '$(tag)\$(tag)text\$(tag)$(tag)'
+      subject.content = '#(tag)\#(tag)text\#(tag)#(tag)'
       subject.tags['()'] = lambda { |tag| ["<#{tag}>", "</#{tag}>"] }
-      subject.formatted_content.should == "<tag>$(tag)text$(tag)</tag>"
+      subject.formatted_content.should == "<tag>#(tag)text#(tag)</tag>"
     end
   end
 

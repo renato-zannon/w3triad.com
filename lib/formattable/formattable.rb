@@ -38,22 +38,22 @@ module Formattable
       key = tag[0]
       open_tag = tag[1][0]
       close_tag = tag[1][1]
-      text.gsub!(/(^|[^\\])(\$#{key})(.*?)\2/, "\\1#{open_tag}\\3#{close_tag}")
-      text.gsub(/(^|[^\\])\$#{key}/, "\\1#{open_tag}")
+      text.gsub!(/(^|[^\\])(##{key})(.*?)\2/, "\\1#{open_tag}\\3#{close_tag}")
+      text.gsub(/(^|[^\\])##{key}/, "\\1#{open_tag}")
     end
   end
 
   def complex_format(string)
     result = string.dup
-    string.scan(/(^|[^\\])\$(\([\w\s]+\))(.*?[^\\])\$\2/) do |starter, key, text|
+    string.scan(/(^|[^\\])#(\([\w\s]+\))(.*?[^\\])#\2/) do |starter, key, text|
       open_tag = tags[key][0]
       close_tag = tags[key][1]
-      result.gsub!(starter+'$'+key+text+'$'+key, starter+open_tag+text+close_tag)
+      result.gsub!(starter+'#'+key+text+'#'+key, starter+open_tag+text+close_tag)
     end
     result
   end
 
   def unescape_tags(string)
-    string.gsub('\$', '$')
+    string.gsub('\#', '#')
   end
 end

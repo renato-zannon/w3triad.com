@@ -20,13 +20,13 @@ Feature: Post on blog
 
         Examples: Default styles
             | title  |  raw_text  |           formatted_text               |
-            | Test 1 |  $itext$i  | <span class='italic'>text</span>       |
-            | Test 2 |  $btext$b  | <span class='bold'>text</span>         |
-            | Test 3 |  $utext$u  | <span class='underline'>text</span>    |
-            | Test 4 |  $otext$o  | <span class='overline'>text</span>     |
-            | Test 5 |  $ttext$t  | <span class='line-through'>text</span> |
+            | Test 1 |  #itext#i  | <span class='italic'>text</span>       |
+            | Test 2 |  #btext#b  | <span class='bold'>text</span>         |
+            | Test 3 |  #utext#u  | <span class='underline'>text</span>    |
+            | Test 4 |  #otext#o  | <span class='overline'>text</span>     |
+            | Test 5 |  #ttext#t  | <span class='line-through'>text</span> |
 
         Examples: User-defined styles
             | title  |      raw_text                |          formatted_text             |
-            | Test 6 | $(cool)text$(cool)           | <span class='cool'>text</span>      |
-            | Test 7 | $(very cool)text$(very cool) | <span class='very cool'>text</span> |
+            | Test 6 | #(cool)text#(cool)           | <span class='cool'>text</span>      |
+            | Test 7 | #(very cool)text#(very cool) | <span class='very cool'>text</span> |
