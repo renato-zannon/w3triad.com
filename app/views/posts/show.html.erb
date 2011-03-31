@@ -2,4 +2,5 @@
 <% @post.formatted_paragraphs.each do |paragraph| %>
   <%= paragraph.html_safe %>
 <% end %>
+<%= link_to "Back to index", posts_path %>
   <%= render :partial => 'disqus' %>
