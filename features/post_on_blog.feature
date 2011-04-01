@@ -30,3 +30,8 @@ Feature: Post on blog
             | title  |      raw_text                |          formatted_text             |
             | Test 6 | #(cool)text#(cool)           | <span class='cool'>text</span>      |
             | Test 7 | #(very cool)text#(very cool) | <span class='very cool'>text</span> |
+
+        Examples: Comments
+            | title  |      raw_text                  |          formatted_text             |
+            | Test 8 |     \#ctext\#c                 |            #ctext#c                 |
+            | Test 9 | \#(very cool)text\#(very cool) |    #(very cool)text#(very cool)     |
