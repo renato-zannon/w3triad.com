@@ -2,4 +2,6 @@
   <h2><%= link_to post.title, post, :class => "post_title" %></h2>
   <%= post.formatted_paragraphs.first.html_safe %>
 <% end %>
-<%= link_to "new post", new_post_path %>
+<% if current_user %>
+  <%= link_to "new post", new_post_path %>
+<% end %>

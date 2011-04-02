@@ -1,9 +1,13 @@
-<%= form_for @post do |f| %>
-  <%= f.label :title, "Title" %><br>
-  <%= f.text_field :title %><br>
+<% if current_user %>
+  <%= form_for @post do |f| %>
+    <%= f.label :title, "Title" %><br>
+    <%= f.text_field :title %><br>
 
-  <%= f.label :content, "Content" %><br>
-  <%= f.text_area :content, :size => "100x20" %><br>
+    <%= f.label :content, "Content" %><br>
+    <%= f.text_area :content, :size => "100x20" %><br>
 
-  <%= f.submit :submit %>
+    <%= f.submit :submit %>
+  <% end %>
+<% else %>
+  Please login before creating new posts
 <% end %>

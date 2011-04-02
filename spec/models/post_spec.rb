@@ -21,4 +21,8 @@ describe Post do
     end
   end
 
+  it "isn't valid without an author" do
+    subject.author = nil
+    subject.should_not be_valid
+  end
 end

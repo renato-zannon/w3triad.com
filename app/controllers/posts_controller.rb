@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.content = CGI.escapeHTML(@post.content)
     @post.title   = CGI.escapeHTML(@post.title)
+    @post.author  = current_user
     if @post.save
       flash[:notice] = "The post was created successfully!"
       redirect_to @post
