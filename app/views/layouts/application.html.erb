@@ -7,6 +7,14 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+    <ul id="navbar">
+      <% if current_user %>
+        <li>Logout</li>
+        <li><%= "Currently logged in as #{current_user.nickname}" %></li>
+      <% else %>
+        <li><%= link_to "Login", login_path %></li>
+      <% end %>
+    </ul>
     <div id="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>

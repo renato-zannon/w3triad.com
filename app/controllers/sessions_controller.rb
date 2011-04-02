@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   def create
     if user = User.authenticate(params[:email], params[:password])
       session[:user_id] = user.id
-      redirect_to posts_path, :notice => "Successfuly logged in as #{user.nickname}!"
+      flash[:notice] =  "Successfuly logged in as #{user.nickname}!"
+      redirect_to posts_path
     else
       flash[:error] = "Nickname and password combination invalid. Please re-check the provided information"
       render :new

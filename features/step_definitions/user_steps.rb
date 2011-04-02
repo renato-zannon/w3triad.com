@@ -13,6 +13,6 @@ When /^fill my credentials correctly$/ do
 end
 
 Then /^I should be logged in$/ do
-    pending # express the regexp above with the code you wish you had
+  page.body.should include "Currently logged in as #{@user.nickname}"
 end
 
