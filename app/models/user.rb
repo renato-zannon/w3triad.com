@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_writer :password
+  attr_accessor :password
   attr_protected :password_salt, :password_hash
 
   validates   :password, :confirmation => true, :presence => true
@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
     password_hash == encrypt(password)
   end
 
+  def User.authenticate(email, password)
+    user = User.find_by_email(email)
+    user.password = password unless user.nil?
+    return user if user && user.has_valid_password?
+  end
   private
 
   def encrypt_password
@@ -21,10 +26,6 @@ class User < ActiveRecord::Base
   def encrypt(pass)
     self.password_salt ||= BCrypt::Engine.generate_salt
     BCrypt::Engine.hash_secret(pass, password_salt)
-  end
-
-  def password
-    @password
   end
 
 end

@@ -56,4 +56,26 @@ describe User do
     end
   end
 
+  describe ".authenticate" do
+    it "returns the user, if a valid combination of password and email is provided" do
+      user.password = 'password'
+      user.password_confirmation = 'password'
+      user.email = 'email@example.com'
+      user.save
+
+      User.authenticate(user.email, user.password).should == user
+    end
+
+    it "returns nil if a nonexistant email is passed" do
+      User.authenticate("doesntexist@nowhere.com", user.password).should be_nil
+    end
+
+    it "returns nil if given a wrong password" do
+      User.authenticate(user.email, "wrongpassword").should be_nil
+    end
+
+    it "returns nil if given both a wrong password and a nonexistant email" do
+      User.authenticate("doesntexist@nowhere.com", "wrongpassword").should be_nil
+    end
+  end
 end
