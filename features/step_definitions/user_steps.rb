@@ -16,3 +16,14 @@ Then /^I should be logged in$/ do
   page.body.should include "Currently logged in as #{@user.nickname}"
 end
 
+When /^I don't fill my credentials correctly$/ do
+  When "I fill in \"email\" with \"#{@user.email}\""
+  When "I fill in \"password\" with \"wrongpassword\""
+  When "I press \"login\""
+end
+
+Then /^I should not be logged in$/ do
+  page.body.should_not include "Currently logged in as #{@user.nickname}"
+  page.body.should include "invalid"
+end
+
