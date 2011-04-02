@@ -1,6 +1,7 @@
 Given /^I am an existent User$/ do
   @user = User.create!(:name                  => "Renato Riccieri Santos Zannon",
                        :nickname              => "Bill",
+                       :email                 => "renato.riccieri@gmail.com",
                        :password              => "StrongPassword",
                        :password_confirmation => "StrongPassword")
 end
