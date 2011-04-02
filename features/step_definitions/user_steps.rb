@@ -27,3 +27,8 @@ Then /^I should not be logged in$/ do
   page.body.should include "invalid"
 end
 
+Given /^I am logged in$/ do
+  Given "I am an existent User"
+  When  "I go to the admin login page"
+  When  "fill my credentials correctly"
+end

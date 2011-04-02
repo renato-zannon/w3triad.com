@@ -4,6 +4,9 @@ Feature: Post on blog
     I want to create a post on the blog
     So that I can be famous :)
 
+    Background:
+        Given I am logged in
+
     Scenario: New blog post
         Given I am on the posts page
         And I click on the "new post" link
