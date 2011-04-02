@@ -1,4 +1,5 @@
 <h1><%= link_to @post.title, @post, :class => "post_title" %></h1>
+<p><strong>Author:</strong> <%= @post.author.nickname %></p>
 <% @post.formatted_paragraphs.each do |paragraph| %>
   <%= paragraph.html_safe %>
 <% end %>
