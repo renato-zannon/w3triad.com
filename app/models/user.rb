@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_protected :password_salt, :password_hash
 
+  has_many :posts, :foreign_key => :author_id
+
   validates   :password, :confirmation => true, :presence => true
   validates   :email,    :email        => true, :presence => true
   validates   :name,     :presence     => true
