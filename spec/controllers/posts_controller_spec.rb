@@ -57,13 +57,14 @@ describe PostsController do
     end
 
     it "tries to save the post" do
-      new_post.should_receive(:save)
+      new_post.should_receive(:save!)
       post :create
     end
 
     context "when the post fails to save" do
       before do
-        new_post.stub(:save).and_return false
+        new_post.stub(:save!).and_raise ActiveRecord::RecordInvalid
+        new_post.stub(:new_record?).and_return true
       end
 
       it "sets a flash error message" do

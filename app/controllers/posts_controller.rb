@@ -11,16 +11,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
-    @post.content = CGI.escapeHTML(@post.content)
-    @post.title   = CGI.escapeHTML(@post.title)
-    @post.author  = current_user
-    if @post.save
+    begin
+      @post        = escape Post.new(params[:post])
+      @post.author = current_user
+      @post.save! unless params[:preview_button]
+    rescue Exception
+      flash[:error] = "There was an error while trying to save the post!"
+    end
+
+    if @post.nil? or @post.new_record?
+      render :new
+    else
       flash[:notice] = "The post was created successfully!"
       redirect_to @post
-    else
-      flash[:error] = "There was an error while trying to save the post!"
-      render :new
     end
   end
 
@@ -29,5 +32,12 @@ class PostsController < ApplicationController
       flash[:error] = "The requested post wasn't found!"
       redirect_to posts_path
     end
+  end
+
+  private
+  def escape(post)
+    post.content = CGI.escapeHTML(post.content)
+    post.title   = CGI.escapeHTML(post.title)
+    post
   end
 end

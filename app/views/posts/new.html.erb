@@ -8,6 +8,7 @@
     <%= f.text_area :content, :size => "100x20" %><br>
 
     <%= f.submit :submit %>
+    <%= f.submit :preview, :name => "preview_button" %>
   <% end %>
 <% else %>
   Please login before creating new posts

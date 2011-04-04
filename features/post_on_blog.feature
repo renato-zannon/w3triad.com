@@ -38,3 +38,12 @@ Feature: Post on blog
             | title  |      raw_text                  |          formatted_text             |
             | Test 8 |     \#ctext\#c                 |            #ctext#c                 |
             | Test 9 | \#(very cool)text\#(very cool) |    #(very cool)text#(very cool)     |
+
+    @wip
+    Scenario: Blog post preview
+        Given I am on the posts page
+        And I click on the "new post" link
+        When I write a new post
+        And I press "preview"
+        Then I should be able to see the post's complete page
+        But I should no be able to see it on the post's index
