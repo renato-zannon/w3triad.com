@@ -12,6 +12,8 @@ module NavigationHelpers
       '/'
     when /the admin login page/
       '/admin'
+    when /my profile's page/
+      "/#{@user.nickname}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

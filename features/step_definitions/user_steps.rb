@@ -32,3 +32,11 @@ Given /^I am logged in$/ do
   When  "I go to the admin login page"
   When  "fill my credentials correctly"
 end
+
+Then /^I should be able to see my info$/ do
+  Then "I should see /Nickname.*Bill/"
+  Then "I should see /Name.*Renato/"
+  Then "I should see /Bio.*/"
+  Then "I should see /Email.*renato\.riccieri@gmail.com/"
+  Then "I should see /Last posts/"
+end
