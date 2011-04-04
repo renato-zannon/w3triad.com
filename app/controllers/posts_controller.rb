@@ -11,20 +11,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    begin
-      @post        = escape Post.new(params[:post])
-      @post.author = current_user
-      @post.save! unless params[:preview_button]
-    rescue Exception
-      flash[:error] = "There was an error while trying to save the post!"
-    end
+    return preview if params[:preview_button]
+    @post        = escape Post.new(params[:post])
+    @post.author = current_user
+    @post.save!
+    redirect_to @post, :notice => "The post was created successfully!"
+  rescue Exception
+    flash[:error] = "There was an error while trying to save the post!"
+    render :new
+  end
 
-    if @post.nil? or @post.new_record?
-      render :new
-    else
-      flash[:notice] = "The post was created successfully!"
-      redirect_to @post
-    end
+  def preview
+    @post = escape Post.new(params[:post])
+    render :preview
   end
 
   def show

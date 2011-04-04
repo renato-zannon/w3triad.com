@@ -1,0 +1,7 @@
+<h3><%= @post.title %></h3>
+<% @post.formatted_paragraphs.each do |paragraph| %>
+  <%= paragraph.html_safe %>
+<% end %>
+<% post_attributes = {:title => @post.title, :content => @post.content} %>
+<%= button_to "Save post", {:action => :create, :post => post_attributes}, :method => :post %>
+<%= link_to "Keep editing", {:action => :new, :post => post_attributes} %>
