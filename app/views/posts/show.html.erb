@@ -1,7 +1,7 @@
 <h1><%= link_to @post.title, @post, :class => "post_title" %></h1>
 <p>Posted
 <% if @post.author %>
-  by <strong><%= @post.author.nickname %></strong>
+  by <strong><%= link_to @post.author.nickname, profile_path(@post.author.nickname) %></strong>
 <% end %>
 <strong><%= time_ago_in_words(@post.created_at) %></strong> ago</p>
 
