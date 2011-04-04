@@ -1,5 +1,13 @@
 <%= render :partial => 'shared/error_messages', :locals => { :object => @post } %>
 <% if current_user %>
+  <% if params[:preview_button] %>
+    <div id="post_preview">
+      <h3><%= @post.title %></h3>
+      <% @post.formatted_paragraphs.each do |paragraph| %>
+        <%= paragraph.html_safe %>
+      <% end %>
+    </div>
+  <% end %>
   <%= form_for @post do |f| %>
     <%= f.label :title, "Title" %><br>
     <%= f.text_field :title %><br>
