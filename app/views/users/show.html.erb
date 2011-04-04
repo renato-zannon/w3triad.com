@@ -4,3 +4,10 @@
   <dt>Bio</dt> <%= content_tag :dd, @user.bio %>
   <dt>E-mail</dt> <%= content_tag :dd, @user.email %>
 </dl>
+
+<h3>Latest posts</h3>
+<ul>
+  <% @user.posts.each do |post| %>
+    <li><%= link_to post.title, post %>
+  <% end %>
+</ul>
