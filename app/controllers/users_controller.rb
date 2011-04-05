@@ -9,4 +9,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_profile
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes!(params[:user])
+    redirect_to :edit_profile, :notice => "Updated successfully!"
+  rescue Exception
+    flash[:error] = "The user couldn't be saved"
+    render :edit_profile
+  end
 end

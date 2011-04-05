@@ -40,3 +40,10 @@ Then /^I should be able to see my info$/ do
   Then "I should see /E-mail.*renato\.riccieri@gmail.com/"
   Then "I should see /Latest posts/"
 end
+
+Then /^I should see a form to edit my profile$/ do
+  page.should have_selector "form"
+  ["Nickname", "Name", "Bio", "E-mail", "Current Password", "New Password", "New Password confirmation"].each do |field|
+    page.should have_field field
+  end
+end
