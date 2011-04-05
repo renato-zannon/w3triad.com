@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.authenticate(params[:email], params[:password])
+    if user = User.authenticate(params[:nickname], params[:password])
       session[:user_id] = user.id
       flash[:notice] =  "Successfuly logged in as #{user.nickname}!"
       redirect_to posts_path

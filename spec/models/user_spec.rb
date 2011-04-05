@@ -58,25 +58,25 @@ describe User do
   end
 
   describe ".authenticate" do
-    it "returns the user, if a valid combination of password and email is provided" do
+    it "returns the user, if a valid combination of password and nickname is provided" do
       new_user.password = 'password'
       new_user.password_confirmation = 'password'
-      new_user.email = 'email@example.com'
+      new_user.nickname = 'Bill'
       new_user.save
 
-      User.authenticate(new_user.email, new_user.password).should == new_user
+      User.authenticate(new_user.nickname, new_user.password).should == new_user
     end
 
-    it "returns nil if a nonexistant email is passed" do
-      User.authenticate("doesntexist@nowhere.com", user.password).should be_nil
+    it "returns nil if a nonexistant nickname is passed" do
+      User.authenticate("pope", user.password).should be_nil
     end
 
     it "returns nil if given a wrong password" do
-      User.authenticate(user.email, "wrongpassword").should be_nil
+      User.authenticate(user.nickname, "wrongpassword").should be_nil
     end
 
-    it "returns nil if given both a wrong password and a nonexistant email" do
-      User.authenticate("doesntexist@nowhere.com", "wrongpassword").should be_nil
+    it "returns nil if given both a wrong password and a nonexistant nickname" do
+      User.authenticate("pope", "wrongpassword").should be_nil
     end
   end
 
