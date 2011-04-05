@@ -130,4 +130,15 @@ describe PostsController do
       end
     end
   end
+
+  describe "GET preview" do
+    let(:incomplete_post) { Factory(:post) }
+
+    it "sets an instance variable with a post based on the passed parameters" do
+      params = { :title => incomplete_post.title, :content => incomplete_post.content }
+      get :preview, :post => params
+      assigns[:post].attributes.should have_value params[:title]
+      assigns[:post].attributes.should have_value params[:content]
+    end
+  end
 end

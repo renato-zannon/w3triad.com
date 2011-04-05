@@ -37,4 +37,16 @@ describe SessionsController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    it "resets the user_id session variable" do
+      delete :destroy
+      session[:user_id].should be_nil
+    end
+
+    it "redirects to the root posts path" do
+      delete :destroy
+      response.should redirect_to posts_path
+    end
+  end
 end

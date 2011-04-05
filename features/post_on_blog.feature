@@ -39,7 +39,6 @@ Feature: Post on blog
             | Test 8 |     \#ctext\#c                 |            #ctext#c                 |
             | Test 9 | \#(very cool)text\#(very cool) |    #(very cool)text#(very cool)     |
 
-    @wip
     Scenario: Blog post preview
         Given I am on the posts page
         And I click on the "new post" link
