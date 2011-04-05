@@ -1,0 +1,27 @@
+<%= form_for(@user, :url => update_user_path(@user), :method => :put) do |f| %>
+  <%= f.label :nickname, "Nickname" %>
+  <%= f.text_field :nickname %><br>
+
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :bio, "Bio" %><br>
+  <%= f.text_area :bio %><br>
+
+  <%= f.label :email, "E-mail" %>
+  <%= f.text_field :email %><br>
+
+  <div id="password_change">
+    <p><strong>Password change</strong></p>
+    <%= f.label :password, "Current Password" %>
+    <%= f.password_field :password %><br>
+
+    <%= f.label :new_password, "New Password" %>
+    <%= f.password_field :new_password %><br>
+
+    <%= f.label :new_password_confirmation, "New Password confirmation" %>
+    <%= f.password_field :new_password_confirmation %><br>
+
+    <%= f.submit "Commit changes" %>
+  </div>
+<% end %>

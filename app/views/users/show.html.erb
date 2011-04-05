@@ -11,3 +11,6 @@
     <li><%= link_to post.title, post %>
   <% end %>
 </ul>
+<% if current_user == @user %>
+  <%= button_to "Edit Profile", edit_profile_path(@user) %>
+<% end %>
