@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation,     :on => :create
   validates_confirmation_of :new_password
   validates_presence_of :new_password_confirmation, :on => :update, :unless => Proc.new { new_password.nil? or new_password.empty? }
+  validates_uniqueness_of :email, :nickname
   validates :email, :email => true
 
   before_save   :encrypt_password
