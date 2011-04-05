@@ -6,8 +6,7 @@ Feature: User profiles
       Then I should be able to see my info
 
     Scenario: View "edit profile" page
-      Given I am an existent User
-      And I am logged in
+      Given I am logged in
       When I go to my profile's page
       And I press "Edit Profile"
       Then I should see a form to edit my profile
