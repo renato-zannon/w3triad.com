@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_filter :require_login, :only => [:new, :create, :preview]
+
   def index
     @posts = Post.all
     if @posts.nil? || @posts.empty?
@@ -38,5 +41,12 @@ class PostsController < ApplicationController
     post.content = CGI.escapeHTML(post.content)
     post.title   = CGI.escapeHTML(post.title)
     post
+  end
+
+  def require_login
+    if current_user.nil?
+      flash[:error] = "You must sign in to access that page"
+      redirect_to posts_path
+    end
   end
 end

@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe PostsController do
 
-  before { mock_model('Post') }
+  before do
+    mock_model('Post')
+    PostsController.skip_before_filter :require_login
+  end
 
   describe "GET index" do
     it "gets all the posts on the database" do
