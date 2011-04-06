@@ -1,7 +1,11 @@
 require 'formattable'
 class Post < ActiveRecord::Base
+  has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
+
   belongs_to :author, :class_name => 'User'
   validates :title, :content, :author, :presence => true
+  validates :title, :uniqueness => true
+
   act_as_formattable   'i' => ["<span class='italic'>",    "</span>"],
                        'b' => ["<span class='bold'>",      "</span>"],
                        'u' => ["<span class='underline'>", "</span>"],

@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'activevalidators'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'ruby-recaptcha'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'capybara'

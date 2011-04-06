@@ -45,6 +45,7 @@ GEM
       ZenTest (>= 4.4.1)
     autotest-notification (2.3.1)
       autotest (~> 4.3)
+    babosa (0.3.3)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     capybara (0.4.1.2)
@@ -83,6 +84,8 @@ GEM
       railties (>= 3.0.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
+    friendly_id (3.2.1.1)
+      babosa (~> 0.3.0)
     gherkin (2.3.5)
       json (>= 1.4.6)
     i18n (0.5.0)
@@ -162,6 +165,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   factory_girl_rails
+  friendly_id
   launchy
   nifty-generators!
   rails (~> 3.0.5)
