@@ -4,6 +4,7 @@ gem 'rails', '~>3.0.5'
 gem 'sqlite3'
 gem 'activevalidators'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'ruby-recaptcha'
 
 group :development, :test do
   gem 'capybara'
