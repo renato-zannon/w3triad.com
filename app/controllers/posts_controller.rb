@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   before_filter :require_login, :only => [:new, :create, :preview]
 
+  caches_action :show
+
   def index
     @posts = Post.all
     if @posts.nil? || @posts.empty?
@@ -18,6 +20,7 @@ class PostsController < ApplicationController
     @post        = escape Post.new(params[:post])
     @post.author = current_user
     @post.save!
+    expire_fragment(:action => :index, :controller => :posts)
     redirect_to @post, :notice => "The post was created successfully!"
   rescue Exception
     flash[:error] = "There was an error while trying to save the post!"
