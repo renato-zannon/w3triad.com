@@ -9,4 +9,4 @@
   <%= paragraph.html_safe %>
 <% end %>
 <%= link_to "Back to index", posts_path %>
-<%= render :partial => 'disqus' %>
+<%= render :partial => 'disqus', :locals => {:post => @post} %>
