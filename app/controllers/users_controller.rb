@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @user = User.find_by_nickname(params[:nickname])
       raise if @user.nil?
     rescue Exception
-      flash.now[:error] = "The user wasn't found"
+      flash[:error] = "The user wasn't found"
       redirect_to posts_path
     end
   end

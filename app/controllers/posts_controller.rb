@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     expire_fragment(:action => :index, :controller => :posts)
     redirect_to @post, :notice => "The post was created successfully!"
   rescue Exception
-    flash[:error] = "There was an error while trying to save the post!"
+    flash.now[:error] = "There was an error while trying to save the post!"
     render :new
   end
 

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       flash[:notice] =  "Successfuly logged in as #{user.nickname}!"
       redirect_to posts_path
     else
-      flash[:error] = "Nickname and password combination invalid. Please re-check the provided information"
+      flash.now[:error] = "Nickname and password combination invalid. Please re-check the provided information"
       render :new
     end
   end
