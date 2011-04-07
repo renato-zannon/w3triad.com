@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_filter :require_login, :only => [:new, :create, :preview]
 
-  caches_action :show
+  caches_action :show, :layout => false
 
   def index
     @posts = Post.paginate :all, :page => params[:page], :order => 'created_at DESC'
