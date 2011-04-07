@@ -6,6 +6,7 @@ gem 'activevalidators'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'ruby-recaptcha'
 gem 'friendly_id'
+gem 'will_paginate', '~>3.0.beta'
 
 group :development, :test do
   gem 'capybara'

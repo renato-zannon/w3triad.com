@@ -1,5 +1,7 @@
 require 'formattable'
 class Post < ActiveRecord::Base
+  self.per_page = 5
+
   has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
 
   belongs_to :author, :class_name => 'User'

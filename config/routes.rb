@@ -1,7 +1,7 @@
 W3triadCom::Application.routes.draw do
   get "users/show"
 
-  root :to => "posts#index"
+#  root :to => "posts#index"
   match '/posts/preview'     => "posts#preview",      :as => "preview_post"
   resources :posts
 

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   caches_action :show
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate :all, :page => params[:page], :order => 'created_at DESC'
     if @posts.nil? || @posts.empty?
       flash[:notice] = "No posts were found!"
     end
