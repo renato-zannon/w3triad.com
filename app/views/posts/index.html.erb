@@ -1,9 +1,7 @@
-<% cache do %>
-  <%= paginated_section @posts do %>
-    <% @posts.each do |post| %>
-      <h2><%= link_to post.title, post, :class => "post_title" %></h2>
-      <%= post.formatted_paragraphs.first.html_safe %>
-    <% end %>
+<%= paginated_section @posts do %>
+  <% @posts.each do |post| %>
+    <h2><%= link_to post.title, post, :class => "post_title" %></h2>
+    <%= post.formatted_paragraphs.first.html_safe %>
   <% end %>
 <% end %>
 <% if current_user %>
