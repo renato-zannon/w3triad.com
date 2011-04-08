@@ -1,12 +1,16 @@
-<h1><%= link_to @post.title, @post, :class => "post_title" %></h1>
-<p>Posted
-<% if @post.author %>
-  by <strong><%= link_to @post.author.nickname, profile_path(@post.author.nickname) %></strong>
+<% cache(:section => "top") do %>
+  <h1><%= link_to @post.title, @post, :class => "post_title" %></h1>
+  <p>Posted
+  <% if @post.author %>
+    by <strong><%= link_to @post.author.nickname, profile_path(@post.author.nickname) %></strong>
+  <% end %>
 <% end %>
 <strong><%= time_ago_in_words(@post.created_at) %></strong> ago</p>
 
-<% @post.formatted_paragraphs.each do |paragraph| %>
-  <%= paragraph.html_safe %>
+<% cache(:section => "content") do %>
+  <% @post.formatted_paragraphs.each do |paragraph| %>
+    <%= paragraph.html_safe %>
+  <% end %>
+  <%= link_to "Back to index", posts_path %>
+  <%= render :partial => 'disqus', :locals => {:post => @post} %>
 <% end %>
-<%= link_to "Back to index", posts_path %>
-<%= render :partial => 'disqus', :locals => {:post => @post} %>
