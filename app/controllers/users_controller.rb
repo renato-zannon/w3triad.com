@@ -2,13 +2,11 @@ class UsersController < ApplicationController
 
   before_filter :check_user, :except => [:show]
   def show
-    begin
-      @user = User.find_by_nickname(params[:nickname])
-      raise if @user.nil?
-    rescue Exception
-      flash[:error] = "The user wasn't found"
-      redirect_to posts_path
-    end
+    @user = User.find(:first, :conditions => ["lower(?) = lower(users.nickname)", params[:nickname]]) #Case-insensitive search
+    raise if @user.nil?
+  rescue Exception
+    flash[:error] = "The user wasn't found"
+    redirect_to posts_path
   end
 
   def edit_profile
