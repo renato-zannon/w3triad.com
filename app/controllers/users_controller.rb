@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :check_user, :except => [:show]
   def show
-    @user = User.find(:first, :conditions => ["lower(?) = lower(users.nickname)", params[:nickname]]) #Case-insensitive search
+    @user = User.with_nickname(params[:nickname]) #Case-insensitive search
     raise if @user.nil?
   rescue Exception
     flash[:error] = "The user wasn't found"
