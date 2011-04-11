@@ -16,7 +16,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'nifty-generators', :git => 'git://github.com/ryanb/nifty-generators.git'
-  gem 'autotest-notification'
+  gem 'autotest-notification', :git => 'https://github.com/riccieri/autotest-notification.git'
   gem 'autotest'
   gem 'simplecov'
 end
