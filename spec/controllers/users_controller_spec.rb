@@ -6,7 +6,7 @@ describe UsersController do
     let(:user) { Factory(:user) }
 
     context "if the provided nickname exists"  do
-      before { User.stub(:find_by_nickname).and_return user }
+      before { User.stub(:find).and_return user }
 
       it "sets an instance variable containing the found user" do
         get 'show'
