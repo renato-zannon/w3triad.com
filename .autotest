@@ -2,4 +2,5 @@ Autotest.add_hook :initialize do |at|
 at.add_mapping(%r%^spec/([^/]+)/.*rb$%) { |name, _|
   name
 }
+%w{.bundle db tmp log .git}.each { |exception| at.add_exception(exception) }
 end
