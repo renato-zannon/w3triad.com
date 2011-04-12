@@ -5,7 +5,10 @@ module Formattable
 
     def [](key)
       if TagCollection.complex_key?(key)
-        tags['()'].call (key.gsub(/\A\(([\w\s]*)\)\z/, '\1'))
+        matches = TagCollection.complex_key_regexp.match key
+        called_key = matches[1]
+        parameter  = matches[2] || nil
+        parameter ? tags["(#{called_key})"].call(parameter) : tags["(#{called_key})"].call;
       else
         tags[key]
       end
@@ -20,7 +23,12 @@ module Formattable
 
     def []=(key, value)
       raise ArgumentError unless TagCollection.valid_tag?(key, value)
-      tags[key] = value
+      if TagCollection.complex_key?(key)
+        called_key       = TagCollection.complex_key_regexp.match(key)[1]
+        tags['('+called_key+')'] = value
+      else
+        tags[key] = value
+      end
     end
 
     def merge(other_hash)
@@ -44,18 +52,29 @@ module Formattable
 
     private
 
+    def TagCollection.simple_key_regexp
+      @simple_key_regexp  ||= /[[:alpha:]]/
+    end
+
+    def TagCollection.complex_key_regexp
+      @complex_key_regexp ||= /\((\w*)\s*([^()]*)\)/
+    end
+
+    def TagCollection.key_regexp
+      @key_regexp ||= Regexp.new('\A(' + simple_key_regexp.to_s + '|' + complex_key_regexp.to_s + ')\z')
+    end
+
     def TagCollection.valid_tag?(key, value)
-      @key_regex ||= %r{\A([[:alpha:]]|\(\))\z}
-      return false unless key.kind_of? String and key.match(@key_regex)
+      return false unless key.kind_of? String and key.match(key_regexp)
       if (value.kind_of? Array and value.count == 2)
         return true
-      elsif value.kind_of? Proc and value.parameters.count==1
+      elsif value.kind_of? Proc and value.parameters.count<2
         return true
       end
     end
 
     def TagCollection.complex_key?(key)
-      return true if key.match(/\([\w\s]*\)/)
+      key.match(complex_key_regexp)
     end
   end
 end

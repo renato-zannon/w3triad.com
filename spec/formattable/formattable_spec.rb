@@ -27,8 +27,8 @@ describe Formattable do
     end
 
     it "formats complex tags" do
-      subject.content = "#(style)test#(style)"
-      subject.tags['()'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
+      subject.content = "#(t style)test#(t style)"
+      subject.tags['(t)'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
       subject.formatted_content.should == "<style>test</style>"
     end
 
@@ -40,8 +40,8 @@ describe Formattable do
     end
 
     it "formats complex tags and simple tags altogether" do
-      subject.content = "#(style)#ttext#t#(style) #t#(style)text#(style)#t"
-      subject.tags['()'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
+      subject.content = "#(t style)#ttext#t#(t style) #t#(t style)text#(t style)#t"
+      subject.tags['(t)'] = lambda { |t| ["<#{t}>", "</#{t}>"] }
       subject.tags['t'] = ['<test>', '</test>']
       subject.formatted_content.should == "<style><test>text</test></style> <test><style>text</style></test>"
     end
@@ -56,9 +56,9 @@ describe Formattable do
       subject.tags['t'] = ["<tag>", "</tag>"]
       subject.formatted_content.should == "#t<tag>text</tag>"
 
-      subject.content = '#(tag)\#(tag)text\#(tag)#(tag)'
-      subject.tags['()'] = lambda { |tag| ["<#{tag}>", "</#{tag}>"] }
-      subject.formatted_content.should == "<tag>#(tag)text#(tag)</tag>"
+      subject.content = '#(t tag)\#(t tag)text\#(t tag)#(t tag)'
+      subject.tags['(t)'] = lambda { |tag| ["<#{tag}>", "</#{tag}>"] }
+      subject.formatted_content.should == "<tag>#(t tag)text#(t tag)</tag>"
     end
   end
 

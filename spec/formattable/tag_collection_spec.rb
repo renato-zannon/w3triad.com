@@ -6,16 +6,22 @@ module Formattable
     subject { TagCollection.new }
 
     describe "accepts tags mapping to" do
-      specify "an array with two members, when the key is simple" do
+      specify "an array with two members" do
         subject["c"] = ["<cool>", "</cool>"]
         subject.should include "c"
       end
 
-      specify "a block, for the parenthesis key" do
-        subject["()"] = Proc.new { |tag| ["<#{tag}>","</#{tag}>"] }
-        subject["(cool)"].should == ["<cool>", "</cool>"]
+      specify "a block that accepts one argument" do
+        subject["c"] = Proc.new { |tag| }
+        subject.should include "c"
+      end
+
+      specify "a block that accepts no arguments" do
+        subject["c"] = Proc.new {}
+        subject.should include "c"
       end
     end
+
     describe "lets me change the tags" do
       specify "by merging another hash" do
         new_tag = {"c" => ["<cool>", "</cool>"]}
@@ -57,8 +63,8 @@ module Formattable
         end
       end
 
-      specify "a Proc that accepts more (or less) than 1 parameter" do
-        bad_procs = [ Proc.new {}, Proc.new { |a,b| }, Proc.new { |a,b,c| } ]
+      specify "a Proc that accepts more than 1 parameter" do
+        bad_procs = [ Proc.new { |a,b| }, Proc.new { |a,b,c| } ]
         bad_procs.each do |bad_proc|
           mapping_bad_proc = lambda { subject['()'] = bad_proc }
           mapping_bad_proc.should raise_error ArgumentError
