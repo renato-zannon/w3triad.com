@@ -38,8 +38,11 @@ module Formattable
       tags.merge!(other_hash)
     end
 
-    def include?(obj)
-      tags.include?(obj)
+    def include?(key)
+      if TagCollection.complex_key?(key)
+        key = '('+key.match(TagCollection.complex_key_regexp)[1]+')'
+      end
+      tags.include?(key)
     end
 
     def tags

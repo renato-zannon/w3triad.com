@@ -27,7 +27,7 @@ module Formattable
 
   private
   def format(string)
-    simple_tags = tags.reject { |tag, _| tag=='()' }
+    simple_tags = tags.reject { |tag, _| tag.match(/\(.+\)/) }
     string = simple_format(string, simple_tags)
     string = complex_format(string)
     unescape_tags(string)
@@ -45,10 +45,11 @@ module Formattable
 
   def complex_format(string)
     result = string.dup
-    string.scan(/(^|[^\\])#(\([\w\s]+\))(.*?[^\\])#\2/) do |starter, key, text|
+    string.scan(/(?<!\\)#(\(\w+\s*[^)]*\))(.*?)((?<!\\)#\1)/) do |key, text, end_tag|
+      next unless tags.include? key
       open_tag = tags[key][0]
-      close_tag = tags[key][1]
-      result.gsub!(starter+'#'+key+text+'#'+key, starter+open_tag+text+close_tag)
+      close_tag = (end_tag ? tags[key][1] : "")
+      result.gsub!($&, open_tag+text+close_tag)
     end
     result
   end

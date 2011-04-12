@@ -16,5 +16,5 @@ class Post < ActiveRecord::Base
                        :paragraph_begin => '<p>',
                        :paragraph_end   => '</p>',
                        :line_break      => '<br />',
-                       '()'             => lambda { |style| ["<span class='#{style}'>", "</span>"] }
+                       '(span)'             => lambda { |style| ["<span class='#{style}'>", "</span>"] }
 end
