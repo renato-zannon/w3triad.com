@@ -45,10 +45,10 @@ module Formattable
 
   def complex_format(string)
     result = string.dup
-    string.scan(/(?<!\\)#(\(\w+\s*[^)]*\))(.*?)((?<!\\)#\1)/) do |key, text|
-      next unless tags.include? key
-      open_tag  = tags[key][0]
-      close_tag = tags[key][1]
+    string.scan(/(?<!\\)#(\((\w+)\s*[^)]*\))(.*?)(?:(?<!\\)#\(\2.*?\))/) do |full_tag, _, text|
+      next unless tags.include? full_tag
+      open_tag  = tags[full_tag][0]
+      close_tag = tags[full_tag][1]
       result.gsub!($&, open_tag+text+close_tag)
     end
     result2 = result.dup #argh! D:
