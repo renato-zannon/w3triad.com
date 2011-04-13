@@ -45,13 +45,19 @@ module Formattable
 
   def complex_format(string)
     result = string.dup
-    string.scan(/(?<!\\)#(\(\w+\s*[^)]*\))(.*?)((?<!\\)#\1)/) do |key, text, end_tag|
+    string.scan(/(?<!\\)#(\(\w+\s*[^)]*\))(.*?)((?<!\\)#\1)/) do |key, text|
       next unless tags.include? key
-      open_tag = tags[key][0]
-      close_tag = (end_tag ? tags[key][1] : "")
+      open_tag  = tags[key][0]
+      close_tag = tags[key][1]
       result.gsub!($&, open_tag+text+close_tag)
     end
-    result
+    result2 = result.dup #argh! D:
+    result.scan(/(?<!\\)#(\(\w+\s*[^)]*\))/) do |match|
+      key = match[0]
+      next unless tags.include? key
+      result2.gsub!($&, tags[key][0])
+    end
+    result2
   end
 
   def unescape_tags(string)
