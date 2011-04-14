@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
                        :paragraph_begin => '<p>',
                        :paragraph_end   => '</p>',
                        :line_break      => '<br />',
-                       '(span)'         => lambda { |style| ["<span class='#{style}'>", "</span>"] },
-                       '(img)'          => lambda { |url|   ["<img src='#{url}'>", ""] },
-                       '(link)'         => lambda { |url|   ["<a href='#{url}'>", "</a>"]}
+                       '(span)'         => lambda { |style|           ["<span class='#{style}'>", "</span>"] },
+                       '(img)'          => lambda { |url, klass=''|   ["<img src='#{url}' class='#{klass}'>", ""] },
+                       '(link)'         => lambda { |url|             ["<a href='#{url}'>", "</a>"]}
 end
