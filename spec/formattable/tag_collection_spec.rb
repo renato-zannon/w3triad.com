@@ -62,14 +62,6 @@ module Formattable
           setting_nil_tag.should raise_error ArgumentError
         end
       end
-
-      specify "a Proc that accepts more than 1 parameter" do
-        bad_procs = [ Proc.new { |a,b| }, Proc.new { |a,b,c| } ]
-        bad_procs.each do |bad_proc|
-          mapping_bad_proc = lambda { subject['()'] = bad_proc }
-          mapping_bad_proc.should raise_error ArgumentError
-        end
-      end
     end
 
     it "is enumerable" do

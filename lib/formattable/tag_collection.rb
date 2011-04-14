@@ -6,9 +6,9 @@ module Formattable
     def [](key)
       if TagCollection.complex_key?(key)
         matches = TagCollection.complex_key_regexp.match key
-        called_key = matches[1]
-        parameter  = matches[2] || nil
-        parameter ? tags["(#{called_key})"].call(parameter) : tags["(#{called_key})"].call;
+        called_key  = matches[1]
+        parameters  = matches[2].split(' ') rescue nil
+        parameters ? tags["(#{called_key})"].call(*parameters) : tags["(#{called_key})"].call rescue [key, key]
       else
         tags[key]
       end
@@ -71,7 +71,7 @@ module Formattable
       return false unless key.kind_of? String and key.match(key_regexp)
       if (value.kind_of? Array and value.count == 2)
         return true
-      elsif value.kind_of? Proc and value.parameters.count<2
+      elsif value.kind_of? Proc
         return true
       end
     end
