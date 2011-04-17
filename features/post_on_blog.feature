@@ -46,3 +46,11 @@ Feature: Post on blog
         And I press "preview"
         Then I should be able to see the post's complete page
         But I should no be able to see it on the post's index
+
+  @wip
+  Scenario: Blog post editing
+        Given I am on the new post page
+        And I create a new post
+        When I press "Edit Post"
+        And I edit the post
+        Then I should see the edited post
