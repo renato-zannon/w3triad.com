@@ -18,7 +18,7 @@ Feature: Post on blog
         Given I am on the new post page
         When I fill in "Content" with "<raw_text>"
         And I fill in "Title" with "<title>"
-        And I press "submit"
+        And I press "Save Post"
         Then I should be able to see "<formatted_text>"
 
         Examples: Default styles
@@ -31,8 +31,8 @@ Feature: Post on blog
 
         Examples: User-defined styles
             | title  |      raw_text                |          formatted_text             |
-            | Test 6 | #(cool)text#(cool)           | <span class='cool'>text</span>      |
-            | Test 7 | #(very cool)text#(very cool) | <span class='very cool'>text</span> |
+            | Test 6 | #(span cool)text#(span)      | <span class='cool'>text</span>      |
+            | Test 7 | #(span very_cool)text#(span) | <span class='very_cool'>text</span> |
 
         Examples: Comments
             | title  |      raw_text                  |          formatted_text             |

@@ -4,7 +4,7 @@ end
 
 When /^I create a new post$/ do
   When "I write a new post"
-  And  "I press \"submit\""
+  And  "I press \"Save Post\""
 end
 
 Then /^I should be able to see it on the post's index$/ do
