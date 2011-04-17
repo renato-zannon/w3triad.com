@@ -12,5 +12,5 @@
   <% end %>
 </ul>
 <% if current_user == @user %>
-  <%= button_to "Edit Profile", edit_profile_path(@user) %>
+  <%= button_to "Edit Profile", edit_profile_path(@user), :method => :get %>
 <% end %>
