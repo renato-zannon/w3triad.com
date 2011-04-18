@@ -7,7 +7,7 @@ W3triadCom::Application.routes.draw do
   resources :posts, :only    => [:new, :create, :show, :index]
 
   match '/admin'             => "sessions#new",       :as => "login",        :via => :get
-  match '/admin/logout'      => "sessions#destroy",   :as => "logout",       :via => :delete
+  match '/admin/logout'      => "sessions#destroy",   :as => "logout",       :via => :get
   resources :sessions, :only => :create
 
   match '/:nickname'         => "users#show",         :as => "profile",      :via => :get
