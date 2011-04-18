@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.with_nickname(params[:nickname]) #Case-insensitive search
     raise if @user.nil?
   rescue Exception
-    flash[:error] = "The user wasn't found"
+    flash[:error] = I18n.t(:user_not_found)
     redirect_to posts_path
   end
 
@@ -16,9 +16,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes!(params[:user])
-    redirect_to :edit_profile, :notice => "Updated successfully!"
+    redirect_to :edit_profile, :notice => I18n.t(:user_updated)
   rescue Exception
-    flash.now[:error] = "The user couldn't be saved"
+    flash.now[:error] = I18n.t(:user_not_saved)
     render :edit_profile
   end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def check_user
     @user = User.find(params[:id])
     unless @user == current_user
-      flash.now[:error] = "You have no permission to access that page"
+      flash.now[:error] = I18n.t(:unauthorized)
       render :show, :status => :unauthorized
     end
   end
