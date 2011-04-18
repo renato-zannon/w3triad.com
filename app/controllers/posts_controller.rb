@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post        = escape Post.new(params[:post])
     @post.author = current_user
     @post.save!
-    expire_fragment(/\/posts\/?\?page=\d+/)
+    expire_fragment(/\/posts\/(\?page=\d+)?/)
     redirect_to @post, :notice => "The post was created successfully!"
   rescue Exception
     flash.now[:error] = "There was an error while trying to save the post!"
