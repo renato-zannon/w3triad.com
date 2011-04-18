@@ -9,10 +9,10 @@
   <body>
     <ul id="navbar">
       <% if current_user %>
-        <li><%= link_to "Logout", logout_path %></li>
-        <li><%= "Currently logged in as #{current_user.nickname}" %></li>
+        <li><%= link_to t(:logout), logout_path %></li>
+        <li><%=  t(:logged_as)+" "+current_user.nickname %></li>
       <% else %>
-        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to t(:login), login_path %></li>
       <% end %>
     </ul>
     <div id="container">

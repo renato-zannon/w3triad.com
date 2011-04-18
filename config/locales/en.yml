@@ -1,5 +1,12 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  new_post:   "New Post"
+  edit_post:  "Edit Post"
+  next:       "Next ->"
+  previous:   "<- Previous"
+  logout:     "Logout"
+  login:      "Login"
+  logged_as:  "Currently logged in as"
+  posted:     "Posted"
+  by:         "by"
+  ago:        "ago"
+  back_index: "Back to index"

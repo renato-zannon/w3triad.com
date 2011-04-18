@@ -1,6 +1,6 @@
 <% cache(:action => :index, :controller => :posts, :page => params[:page]) do %>
   <% unless @posts.nil? or @posts.empty? %>
-    <%= paginated_section @posts do %>
+    <%= paginated_section @posts, :previous_label => t(:previous), :next_label => t(:next) do %>
       <% @posts.each do |post| %>
         <h2><%= link_to post.title, post, :class => "post_title" %></h2>
         <%= post.formatted_paragraphs.first.html_safe %>
@@ -9,5 +9,5 @@
   <% end %>
 <% end %>
 <% if current_user %>
-  <%= link_to "new post", new_post_path %>
+  <%= link_to t(:new_post), new_post_path %>
 <% end %>

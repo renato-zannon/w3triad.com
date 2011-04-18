@@ -1,11 +1,11 @@
 <%= render :partial => 'shared/error_messages', :locals => { :object => @post } %>
 <%= form_for @post do |f| %>
-  <%= f.label :title, "Title" %><br>
+  <%= f.label :title, t(:title) %><br>
   <%= f.text_field :title %><br>
 
-  <%= f.label :content, "Content" %><br>
+  <%= f.label :content, t(:content) %><br>
   <%= f.text_area :content, :size => "100x20" %><br>
 
-  <%= f.submit "Save Post" %>
-  <%= f.submit :preview, :name => "preview_button" %>
+  <%= f.submit t(:save_post) %>
+  <%= f.submit t(:preview), :name => "preview_button" %>
 <% end %>

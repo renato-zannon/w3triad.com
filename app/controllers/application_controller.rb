@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_lang_from_domain
-    request.host.split('.').last == 'br' ? :pt : :en
+   request.host.split('.').last == 'br' ? :"pt-BR" : :en
   end
 end

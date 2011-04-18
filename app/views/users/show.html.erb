@@ -1,16 +1,16 @@
 <dl>
-  <dt>Nickname</dt> <%= content_tag :dd, @user.nickname %>
-  <dt>Name</dt> <%= content_tag :dd, @user.name %>
-  <dt>Bio</dt> <%= content_tag :dd, @user.bio %>
-  <dt>E-mail</dt> <%= content_tag :dd, @user.email %>
+  <%= content_tag :dt, t(:nickname) %> <%= content_tag :dd, @user.nickname %>
+  <%= content_tag :dt, t(:name) %> <%= content_tag :dd, @user.name %>
+  <%= content_tag :dt, t(:bio) %> <%= content_tag :dd, @user.bio %>
+  <%= content_tag :dt, t(:email) %> <%= content_tag :dd, @user.email %>
 </dl>
 
-<h3>Latest posts</h3>
+<%= content_tag :h3, t(:latest_posts) %>
 <ul>
   <% @user.posts.each do |post| %>
     <li><%= link_to post.title, post %>
   <% end %>
 </ul>
 <% if current_user == @user %>
-  <%= button_to "Edit Profile", edit_profile_path(@user), :method => :get %>
+  <%= button_to t(:edit_profile), edit_profile_path(@user), :method => :get %>
 <% end %>
