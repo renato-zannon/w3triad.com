@@ -27,3 +27,8 @@ en:
   user_not_found: "The user wasn't found"
   user_updated:   "The user's data was updated successfully"
   user_not_saved: "The user's data couldn't be saved"
+  unauthorized:   "You have no permission to access that page"
+  invalid_captcha: "The answer to the CAPTCHA was invalid, please try again"
+  successful_login: "Successfuly logged in"
+  invalid_login:    "Nickname and password combination invalid. Please re-check the provided information"
+  logged_out:       "Logged out"

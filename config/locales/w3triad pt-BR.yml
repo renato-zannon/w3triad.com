@@ -28,3 +28,7 @@
   user_updated:   "Os dados do usuário foram atualizados"
   user_not_saved: "Os dados do usuário não puderam ser salvos"
   unauthorized:   "Você não tem permissão para acessar essa página"
+  invalid_captcha: "A resposta ao CAPTCHA foi inválida. Tente novamente"
+  succesful_login: "Login realizado com sucesso"
+  invalid_login:   "Combinação de login e senha inválida. Verifique as informações e tente novamente"
+  logged_out:      "Desconectado"
