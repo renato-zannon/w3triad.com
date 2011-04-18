@@ -1,10 +1,10 @@
 <h2>Administrative user login</h2>
 
 <%= form_tag sessions_path do %>
-  <%= label_tag :nickname %><br>
+  <%= label_tag :nickname, t(:nickname) %><br>
   <%= text_field_tag :nickname, params[:nickname] %><br>
 
-  <%= label_tag :password %><br>
+  <%= label_tag :password, t(:password) %><br>
   <%= password_field_tag :password %><br>
 
   <%= get_captcha.html_safe rescue "" %>
