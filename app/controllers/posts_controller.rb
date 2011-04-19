@@ -30,10 +30,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    unless @post = Post.find(params[:id])
-      flash[:error] = I18n.t(:post_not_found)
-      redirect_to posts_path
-    end
+    @post = Post.find(params[:id])
+  rescue Exception
+    flash[:error] = I18n.t(:post_not_found)
+    redirect_to posts_path
   end
 
   private
