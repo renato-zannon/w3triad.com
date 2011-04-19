@@ -24,6 +24,10 @@ en:
   email:        "E-mail"
   edit_profile: "Edit Profile"
   latest_posts: "Latest Posts"
+  password_change: "Password change"
+  current_password:  "Current password"
+  new_password:      "New password"
+  new_password_conf: "New password confirmation"
 #Flash messages
   user_not_found:   "The user wasn't found"
   user_updated:     "The user's data was updated successfully"

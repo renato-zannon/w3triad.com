@@ -24,6 +24,10 @@
   email:        "E-mail"
   edit_profile: "Editar Perfil"
   latest_posts: "Posts mais recentes"
+  password_change: "Mudança de senha"
+  current_password: "Senha atual"
+  new_password:     "Nova senha"
+  new_password_conf: "Confirmação da nova senha"
 #Mensagens flash
   user_not_found: "O usuário não foi encontrado"
   user_updated:   "Os dados do usuário foram atualizados"

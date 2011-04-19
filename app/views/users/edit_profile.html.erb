@@ -13,14 +13,14 @@
   <%= f.text_field :email %><br>
 
   <div id="password_change">
-    <p><strong>Password change</strong></p>
-    <%= f.label :password, "Current Password" %>
+    <p><%= content_tag :strong, t(:password_change) %></p>
+    <%= f.label :password, t(:current_password) %>
     <%= f.password_field :password %><br>
 
-    <%= f.label :new_password, "New Password" %>
+    <%= f.label :new_password, t(:new_password) %>
     <%= f.password_field :new_password %><br>
 
-    <%= f.label :new_password_confirmation, "New Password confirmation" %>
+    <%= f.label :new_password_confirmation, t(:new_password_conf) %>
     <%= f.password_field :new_password_confirmation %><br>
 
     <%= f.submit "Commit changes" %>
