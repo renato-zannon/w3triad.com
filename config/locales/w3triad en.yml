@@ -17,6 +17,7 @@ en:
   ago:          "ago"
   back_index:   "Back to index"
 #Profile
+  admin_login:  "Administrative user login"
   nickname:     "Nickname"
   name:         "Name"
   bio:          "About"

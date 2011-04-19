@@ -17,6 +17,7 @@
   ago:          "atrás"
   back_index:   "Voltar para o índice"
 #Perfil
+  admin_login:  "Login de usuário administrativo"
   nickname:     "Apelido"
   name:         "Nome Real"
   bio:          "Sobre"
