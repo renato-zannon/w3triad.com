@@ -10,7 +10,7 @@ W3triadCom::Application.routes.draw do
   match '/admin/logout'      => "sessions#destroy",   :as => "logout",       :via => :get
   resources :sessions, :only => :create
 
-  match '/:nickname'         => "users#show",         :as => "profile",      :via => :get
+  match '/:nickname'         => "users#show",         :as => "profile",      :via => :get, :nickname => /Bill|Azura|Zi/i
   match '/admin/:id/edit'    => "users#edit_profile", :as => "edit_profile", :via => :get
   match '/admin/:id'         => "users#update",       :as => "update_user",  :via => :put
 end
