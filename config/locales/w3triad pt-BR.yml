@@ -32,3 +32,7 @@
   succesful_login: "Login realizado com sucesso"
   invalid_login:   "Combinação de login e senha inválida. Verifique as informações e tente novamente"
   logged_out:      "Desconectado"
+  no_posts:        "Nenhum post foi encontrado"
+  post_not_saved:  "Houve um erro ao tentar salvar o post"
+  post_created:    "O post foi criado com sucesso"
+  post_not_found:  "O post requisitado não foi encontrado"

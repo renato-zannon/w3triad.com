@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.paginate :all, :page => params[:page], :order => 'created_at DESC'
     if @posts.nil? || @posts.empty?
-      flash[:notice] = "No posts were found!"
+      flash[:notice] = I18n.t(:no_posts)
     end
   end
 
@@ -18,9 +18,9 @@ class PostsController < ApplicationController
     @post.author = current_user
     @post.save!
     expire_fragment(/\/posts\/(\?page=\d+)?/)
-    redirect_to @post, :notice => "The post was created successfully!"
+    redirect_to @post, :notice => I18n.t(:post_created)
   rescue Exception
-    flash.now[:error] = "There was an error while trying to save the post!"
+    flash.now[:error] = I18n.t(:post_not_saved)
     render :new
   end
 
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   def show
     unless @post = Post.find(params[:id])
-      flash[:error] = "The requested post wasn't found!"
+      flash[:error] = I18n.t(:post_not_found)
       redirect_to posts_path
     end
   end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 
   def require_login
     if current_user.nil?
-      flash[:error] = "You must sign in to access that page"
+      flash[:error] = I18n.t(:unauthorized)
       redirect_to posts_path
     end
   end
