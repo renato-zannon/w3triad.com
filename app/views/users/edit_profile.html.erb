@@ -1,15 +1,15 @@
 <%= render :partial => 'shared/error_messages', :locals => { :object => @user } %>
 <%= form_for(@user, :url => update_user_path(@user), :method => :put) do |f| %>
-  <%= f.label :nickname, "Nickname" %>
+  <%= f.label :nickname, I18n.t(:nickname) %>
   <%= f.text_field :nickname %><br>
 
-  <%= f.label :name, "Name" %>
+  <%= f.label :name, I18n.t(:name) %>
   <%= f.text_field :name %><br>
 
-  <%= f.label :bio, "Bio" %><br>
+  <%= f.label :bio, I18n.t(:bio) %><br>
   <%= f.text_area :bio %><br>
 
-  <%= f.label :email, "E-mail" %>
+  <%= f.label :email, I18n.t(:email) %>
   <%= f.text_field :email %><br>
 
   <div id="password_change">

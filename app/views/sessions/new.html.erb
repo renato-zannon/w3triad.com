@@ -8,5 +8,5 @@
   <%= password_field_tag :password %><br>
 
   <%= get_captcha.html_safe rescue "" %>
-  <%= submit_tag :login %>
+  <%= submit_tag t(:login) %>
 <% end %>
