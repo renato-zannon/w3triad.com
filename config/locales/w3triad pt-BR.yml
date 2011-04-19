@@ -37,3 +37,4 @@
   post_not_saved:  "Houve um erro ao tentar salvar o post"
   post_created:    "O post foi criado com sucesso"
   post_not_found:  "O post requisitado não foi encontrado"
+  page_not_found:  "A página solicitada não foi encontrada"
