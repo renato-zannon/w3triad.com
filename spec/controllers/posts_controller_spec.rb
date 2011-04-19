@@ -101,7 +101,7 @@ describe PostsController do
 
     context "when it doesn't find the post" do
       before do
-        Post.stub(:find).and_return nil
+        Post.stub(:find).and_raise ActiveRecord::RecordNotFound
       end
 
       it "sets a flash error message" do
