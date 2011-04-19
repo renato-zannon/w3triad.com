@@ -9,7 +9,7 @@ end
 When /^fill my credentials correctly$/ do
   When "I fill in \"Nickname\" with \"#{@user.nickname}\""
   When "I fill in \"password\" with \"#{@user.password}\""
-  When "I press \"login\""
+  When "I press \"Login\""
 end
 
 Then /^I should be logged in$/ do
@@ -19,7 +19,7 @@ end
 When /^I don't fill my credentials correctly$/ do
   When "I fill in \"nickname\" with \"#{@user.nickname}\""
   When "I fill in \"password\" with \"wrongpassword\""
-  When "I press \"login\""
+  When "I press \"Login\""
 end
 
 Then /^I should not be logged in$/ do
