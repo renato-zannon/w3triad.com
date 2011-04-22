@@ -36,14 +36,14 @@ end
 Then /^I should be able to see my info$/ do
   Then "I should see /Nickname.*Bill/"
   Then "I should see /Name.*Renato/"
-  Then "I should see /Bio.*/"
+  Then "I should see /About.*/"
   Then "I should see /E-mail.*renato\.riccieri@gmail.com/"
-  Then "I should see /Latest posts/"
+  Then "I should see /Latest Posts/"
 end
 
 Then /^I should see a form to edit my profile$/ do
   page.should have_selector "form"
-  ["Nickname", "Name", "Bio", "E-mail", "Current Password", "New Password", "New Password confirmation"].each do |field|
+  ["Nickname", "Name", "About", "E-mail", "Current password", "New password", "New password confirmation"].each do |field|
     page.should have_field field
   end
 end

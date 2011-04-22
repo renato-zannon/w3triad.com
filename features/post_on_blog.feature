@@ -9,7 +9,7 @@ Feature: Post on blog
 
     Scenario: New blog post
         Given I am on the posts page
-        And I click on the "new post" link
+        And I click on the "New Post" link
         When I create a new post
         Then I should be able to see the post's complete page
         And I should be able to see it on the post's index
@@ -41,9 +41,9 @@ Feature: Post on blog
 
     Scenario: Blog post preview
         Given I am on the posts page
-        And I click on the "new post" link
+        And I click on the "New Post" link
         When I write a new post
-        And I press "preview"
+        And I press "Preview"
         Then I should be able to see the post's complete page
         But I should no be able to see it on the post's index
 
