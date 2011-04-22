@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_filter :require_login, :only => [:new, :create, :preview]
+  before_filter :require_login
+  skip_before_filter :require_login, :only => [:index, :show]
 
   def index
     @posts = Post.paginate :all, :page => params[:page], :order => 'created_at DESC'
@@ -32,6 +33,17 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   rescue Exception
+    flash[:error] = I18n.t(:post_not_found)
+    redirect_to posts_path
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    if @post.author != current_user
+      flash[:error] = I18n.t(:unauthorized)
+      redirect_to @post
+    end
+  rescue ActiveRecord::RecordNotFound
     flash[:error] = I18n.t(:post_not_found)
     redirect_to posts_path
   end

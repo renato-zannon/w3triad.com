@@ -139,4 +139,40 @@ describe PostsController do
       assigns[:post].attributes.should have_value params[:content]
     end
   end
+
+  describe "GET edit" do
+    let(:postie) { Factory(:post) }
+    let(:user) { postie.author }
+    before { postie.author = user }
+    context "if the requested post doesn't exist" do
+      it "sets an error message" do
+        get :edit, :id => postie.id+1
+        flash[:error].should_not be_nil
+      end
+
+      it "redirects to the posts index" do
+        get :edit, :id => postie.id+1
+        response.should redirect_to posts_path
+      end
+    end
+
+    context "if the current user is the author" do
+      before { PostsController.stub(:current_user).and_return user }
+      it "returns the post on an instance variable" do
+        get :edit, :id => postie.id
+        assigns[:post].should == postie
+      end
+    end
+    context "if the current user isn't the author" do
+      before { PostsController.stub(:current_user).and_return nil }
+      it "sets an flash error message" do
+        get :edit, :id => postie.id
+        flash[:error].should_not be_nil
+      end
+      it "redirects to the post page" do
+        get :edit, :id => postie.id
+        response.should redirect_to post_path(postie)
+      end
+    end
+  end
 end
