@@ -3,8 +3,7 @@ W3triadCom::Application.routes.draw do
 
 #  root :to => "posts#index"
   match '/posts/preview'     => "posts#preview",      :as => "preview_post", :via => :get
-  match '/posts/:id/edit'    => "posts#edit",         :as => "edit_post",    :via => :get
-  resources :posts, :only    => [:new, :create, :show, :index]
+  resources :posts, :except  => [:delete, :destroy]
 
   match '/admin'             => "sessions#new",       :as => "login",        :via => :get
   match '/admin/logout'      => "sessions#destroy",   :as => "logout",       :via => :get
