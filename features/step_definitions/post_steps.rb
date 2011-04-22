@@ -31,3 +31,9 @@ Then /^I should no be able to see it on the post's index$/ do
   page.body.should_not include "Stub post :)"
 end
 
+When /^I edit the post$/ do
+  When "I fill in \"Title\" with \"Stub post edited :)\""
+  And  "I fill in \"Content\" with \"Stub content edited!\""
+  And  "I press \"Save Post\""
+end
+

@@ -42,6 +42,8 @@ class PostsController < ApplicationController
     if @post.author != current_user
       flash[:error] = I18n.t(:unauthorized)
       redirect_to @post
+    else
+      render :new
     end
   rescue ActiveRecord::RecordNotFound
     flash[:error] = I18n.t(:post_not_found)
