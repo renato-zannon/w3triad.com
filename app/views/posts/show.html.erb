@@ -7,9 +7,9 @@
 <% end %>
 <strong><%= time_ago_in_words(@post.created_at) %></strong> <%= t(:ago) %></p>
 
-<%# if @post.author == current_user %>
-  <%#= button_to t(:edit_post), edit_post_path(@post), :method => :get %>
-<%# end %>
+<% if @post.author == current_user %>
+  <%= button_to t(:edit_post), edit_post_path(@post), :method => :get %>
+<% end %>
 <% cache(:section => "content") do %>
   <% @post.formatted_paragraphs.each do |paragraph| %>
     <%= paragraph.html_safe %>
