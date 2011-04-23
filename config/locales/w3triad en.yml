@@ -39,6 +39,7 @@ en:
   logged_out:       "Logged out"
   no_posts:         "No posts were found"
   post_not_saved:   "There was an error while trying to save the post"
+  post_saved:       "The post was succesfully saved"
   post_created:     "The post was created successfully"
   post_not_found:   "The requested post couldn't found"
   page_not_found:   "The requested page couldn't be served"

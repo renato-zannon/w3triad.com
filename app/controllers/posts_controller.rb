@@ -48,6 +48,17 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def update
+    return preview if params[:preview_button]
+    @post = escape Post.find(params[:id])
+    @post.update_attributes!(params[:post])
+    expire_fragment(/\/posts\/(\?page=\d+)?/)
+    redirect_to @post, :notice => I18n.t(:post_saved)
+  rescue Exception
+    flash.now[:error] = I18n.t(:post_not_saved)
+    render :edit
+  end
+
   private
   def escape(post)
     post.content = CGI.escapeHTML(post.content)
